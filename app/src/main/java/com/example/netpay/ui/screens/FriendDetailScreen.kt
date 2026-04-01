@@ -208,16 +208,14 @@ fun FriendDetailScreen(
                 }
             }
             
-            // Delete Friend option if settled
-            if (friend.netBalance == 0.0) {
-                item {
-                    Spacer(Modifier.height(40.dp))
-                    TextButton(
-                        onClick = onRemoveFriend,
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
-                    ) {
-                        Text("Remove Friend from Ledger", color = SalmonRed, fontWeight = FontWeight.Bold)
-                    }
+            // Delete Friend option
+            item {
+                Spacer(Modifier.height(40.dp))
+                TextButton(
+                    onClick = onRemoveFriend,
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
+                ) {
+                    Text("Delete Friend from Ledger", color = SalmonRed, fontWeight = FontWeight.Bold)
                 }
             }
         }

@@ -143,15 +143,7 @@ class FirebaseRepository {
         val uid = getCurrentUserId() ?: return
         val pairId = Balance.generatePairId(uid, targetUserId)
         val balanceRef = db.collection("balances").document(pairId)
-        
-        val snapshot = balanceRef.get().await()
-        val currentBal = snapshot.getDouble("netBalance") ?: 0.0
-        
-        if (currentBal == 0.0) {
-            balanceRef.delete().await()
-        } else {
-            throw Exception("Balance must be zero to remove friend")
-        }
+        balanceRef.delete().await()
     }
 
     suspend fun saveUserToDatabase(user: com.google.firebase.auth.FirebaseUser, customName: String = "") {

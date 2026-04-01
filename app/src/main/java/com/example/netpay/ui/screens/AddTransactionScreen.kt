@@ -35,6 +35,7 @@ fun AddTransactionScreen(
     var amountText     by remember { mutableStateOf("") }
     var selectedFriend by remember { mutableStateOf<FriendBalanceItem?>(null) }
     var friendDropdown by remember { mutableStateOf(false) }
+    var iOweThem       by remember { mutableStateOf(false) }
 
     val totalAmount = amountText.toDoubleOrNull() ?: 0.0
 
@@ -169,7 +170,12 @@ fun AddTransactionScreen(
 
             if (selectedFriend != null) {
                 item {
-                    SplitAmountCard(name = selectedFriend!!.friendName, amountText = amountText) {
+                    SplitAmountCard(
+                        name = selectedFriend!!.friendName, 
+                        amountText = amountText,
+                        iOweThem = iOweThem,
+                        onToggleIOweThem = { iOweThem = !iOweThem }
+                    ) {
                         amountText = it
                     }
                 }
@@ -232,7 +238,7 @@ fun AddTransactionScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Button(
-                        onClick = { if (selectedFriend != null && totalAmount > 0) onSubmit(selectedFriend!!.friendId, totalAmount, false, "") },
+                        onClick = { if (selectedFriend != null && totalAmount > 0) onSubmit(selectedFriend!!.friendId, totalAmount, iOweThem, "") },
                         enabled = selectedFriend != null && totalAmount > 0,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -291,12 +297,19 @@ fun FriendTag(name: String, onRemove: () -> Unit) {
 }
 
 @Composable
-fun SplitAmountCard(name: String, amountText: String, onAmountChange: (String) -> Unit) {
+fun SplitAmountCard(
+    name: String, 
+    amountText: String, 
+    iOweThem: Boolean,
+    onToggleIOweThem: () -> Unit,
+    onAmountChange: (String) -> Unit
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp)
-            .height(88.dp),
+            .height(88.dp)
+            .clickable { onToggleIOweThem() },
         shape = RoundedCornerShape(12.dp),
         color = SoftBlack
     ) {
@@ -317,7 +330,7 @@ fun SplitAmountCard(name: String, amountText: String, onAmountChange: (String) -
             // Info
             Column(modifier = Modifier.weight(1f)) {
                 Text(name, color = PureWhite, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                Text("THEY OWE ME", color = MutedWhite, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                Text(if (iOweThem) "I OWE THEM (TAP TO CHANGE)" else "THEY OWE ME (TAP TO CHANGE)", color = MutedWhite, fontSize = 11.sp, fontWeight = FontWeight.Bold)
             }
             
             // Amount Input
@@ -336,8 +349,10 @@ fun SplitAmountCard(name: String, amountText: String, onAmountChange: (String) -
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.width(100.dp),
                     decorationBox = { inner ->
-                        if (amountText.isEmpty()) Text("0.00", color = TextLow, fontSize = 24.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.End)
-                        inner()
+                        Box(contentAlignment = Alignment.CenterEnd, modifier = Modifier.fillMaxWidth()) {
+                            if (amountText.isEmpty()) Text("0.00", color = TextLow, fontSize = 24.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.End)
+                            inner()
+                        }
                     }
                 )
             }
