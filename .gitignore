@@ -1,35 +1,51 @@
-*.iml
-.gradle
-/local.properties
-/.idea/
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
-
-# Android Studio / IntelliJ
-.idea/caches
-.idea/libraries
-.idea/modules.xml
-.idea/workspace.xml
-.idea/navEditor.xml
-.idea/assetWizardSettings.xml
-.idea/deploymentTargetDropDown.xml
-.idea/gradle.xml
-.idea/misc.xml
-.idea/runConfigurations.xml
-
-# Firebase (Sensitive)
-google-services.json
-
-# Built variants
+# Built application files
 *.apk
 *.aar
 *.ap_
 *.aab
 
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Gradle files
+.gradle/
+/build/
+*/build/
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# Max Cyber Security & Secrets
+# Ignore all keystores and signing keys
+*.jks
+*.keystore
+*.pem
+*.p12
+*.p8
+*.key
+
+# Ignore Firebase configs (contains sensitive package-level API keys)
+google-services.json
+**/google-services.json
+
+# Ignore Secret properties & Env files
+secrets.properties
+.env
+.env.*
+.secrets
+credentials.json
+
 # OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 desktop.ini

@@ -214,8 +214,10 @@ fun NetPayApp() {
                             is Screen.Pay -> AddTransactionScreen(
                                 friends = friends,
                                 onBack = { currentScreen = Screen.Home },
-                                onSubmit = { friendId, amount, iOweThem, note ->
-                                    homeViewModel.addTransaction(friendId, amount, iOweThem, note)
+                                onSubmit = { payloads ->
+                                    payloads.forEach { p ->
+                                        homeViewModel.addTransaction(p.friendId, p.amount, p.iOweThem, p.note)
+                                    }
                                     currentScreen = Screen.Home
                                 }
                             )

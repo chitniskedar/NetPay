@@ -8,7 +8,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -26,18 +27,20 @@ import androidx.compose.ui.unit.sp
 import com.example.netpay.data.model.FriendBalanceItem
 import com.example.netpay.ui.theme.*
 
+data class TransactionPayload(val friendId: String, val amount: Double, val iOweThem: Boolean, val note: String)
+
 @Composable
 fun AddTransactionScreen(
     friends: List<FriendBalanceItem>,
     onBack: () -> Unit,
-    onSubmit: (friendId: String, amount: Double, iOweThem: Boolean, note: String) -> Unit
+    onSubmit: (List<TransactionPayload>) -> Unit
 ) {
-    var amountText     by remember { mutableStateOf("") }
-    var selectedFriend by remember { mutableStateOf<FriendBalanceItem?>(null) }
-    var friendDropdown by remember { mutableStateOf(false) }
-    var iOweThem       by remember { mutableStateOf(false) }
+    val selectedFriends = remember { mutableStateListOf<FriendBalanceItem>() }
+    var friendDropdown  by remember { mutableStateOf(false) }
+    val amountsMap      = remember { mutableStateMapOf<String, String>() }
+    val oweMap          = remember { mutableStateMapOf<String, Boolean>() }
 
-    val totalAmount = amountText.toDoubleOrNull() ?: 0.0
+    val totalAmount = amountsMap.values.sumOf { it.toDoubleOrNull() ?: 0.0 }
 
     Box(
         modifier = Modifier
@@ -48,45 +51,19 @@ fun AddTransactionScreen(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(bottom = 120.dp)
         ) {
-            // Top Bar
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp, vertical = 20.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Box(
-                            modifier = Modifier
-                                .size(40.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(SoftBlack),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(Icons.Filled.Person, null, tint = PureWhite, modifier = Modifier.size(24.dp))
-                        }
-                        Spacer(Modifier.width(16.dp))
-                        Text("NetPay", color = PureWhite, fontSize = 20.sp, fontWeight = FontWeight.Black)
-                    }
-                    IconButton(onClick = { /* Search */ }) {
-                        Icon(Icons.Filled.Search, null, tint = MutedWhite)
-                    }
-                }
-            }
+            
 
             // Header
             item {
                 Column(modifier = Modifier.padding(horizontal = 24.dp, vertical = 24.dp)) {
                     Text(
-                        "Split Bill",
+                        "New Expense",
                         color = PureWhite,
                         fontSize = 48.sp,
                         fontWeight = FontWeight.Black
                     )
                     Text(
-                        "MULTI-FRIEND TRANSACTION",
+                        "PERSON-TO-PERSON TRANSACTION",
                         color = MutedWhite,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
@@ -99,7 +76,7 @@ fun AddTransactionScreen(
             item {
                 Column(modifier = Modifier.padding(horizontal = 24.dp)) {
                     Text(
-                        "ADD FRIENDS",
+                        "SELECT FRIEND",
                         color = MintGreen,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
@@ -123,8 +100,8 @@ fun AddTransactionScreen(
                             Icon(Icons.Filled.GroupAdd, null, tint = MintGreen)
                             Spacer(Modifier.width(16.dp))
                             Text(
-                                if (selectedFriend != null) selectedFriend!!.friendName else "Select people from contacts...",
-                                color = if (selectedFriend != null) PureWhite else TextLow,
+                                if (selectedFriends.isNotEmpty()) "${selectedFriends.size} selected" else "Select people from contacts...",
+                                color = if (selectedFriends.isNotEmpty()) PureWhite else TextLow,
                                 fontSize = 16.sp
                             )
                             Spacer(Modifier.weight(1f))
@@ -139,16 +116,26 @@ fun AddTransactionScreen(
                             friends.forEach { f ->
                                 DropdownMenuItem(
                                     text = { Text(f.friendName, color = PureWhite) },
-                                    onClick = { selectedFriend = f; friendDropdown = false }
+                                    onClick = {  
+                                        if (!selectedFriends.any { it.friendId == f.friendId }) selectedFriends.add(f)
+                                        friendDropdown = false 
+                                    }
                                 )
                             }
                         }
                     }
                     
-                    if (selectedFriend != null) {
+                    if (selectedFriends.isNotEmpty()) {
                         Spacer(Modifier.height(16.dp))
-                        Row {
-                            FriendTag(name = selectedFriend!!.friendName) { selectedFriend = null }
+                        Row(modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
+                            selectedFriends.forEach { f ->
+                                FriendTag(name = f.friendName) { 
+                                    selectedFriends.remove(f)
+                                    amountsMap.remove(f.friendId)
+                                    oweMap.remove(f.friendId)
+                                }
+                                Spacer(Modifier.width(8.dp))
+                            }
                         }
                     }
                 }
@@ -168,16 +155,20 @@ fun AddTransactionScreen(
                 Spacer(Modifier.height(16.dp))
             }
 
-            if (selectedFriend != null) {
-                item {
+            if (selectedFriends.isNotEmpty()) {
+                items(selectedFriends) { friend ->
+                    val amount = amountsMap[friend.friendId] ?: ""
+                    val iOweThem = oweMap[friend.friendId] ?: false
+                    
                     SplitAmountCard(
-                        name = selectedFriend!!.friendName, 
-                        amountText = amountText,
+                        name = friend.friendName, 
+                        amountText = amount,
                         iOweThem = iOweThem,
-                        onToggleIOweThem = { iOweThem = !iOweThem }
-                    ) {
-                        amountText = it
+                        onToggleIOweThem = { oweMap[friend.friendId] = !iOweThem }
+                    ) { newValue ->
+                        amountsMap[friend.friendId] = newValue
                     }
+                    Spacer(Modifier.height(16.dp))
                 }
             } else {
                 item {
@@ -218,7 +209,7 @@ fun AddTransactionScreen(
                             )
                             Spacer(Modifier.width(8.dp))
                             Text(
-                                amountText.ifEmpty { "0.00" },
+                                if (totalAmount > 0) String.format("%.2f", totalAmount) else "0.00",
                                 color = PureWhite,
                                 fontSize = 64.sp,
                                 fontWeight = FontWeight.Black
@@ -238,8 +229,20 @@ fun AddTransactionScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Button(
-                        onClick = { if (selectedFriend != null && totalAmount > 0) onSubmit(selectedFriend!!.friendId, totalAmount, iOweThem, "") },
-                        enabled = selectedFriend != null && totalAmount > 0,
+                        onClick = { 
+                            if (selectedFriends.isNotEmpty() && totalAmount > 0) {
+                                val payloads = selectedFriends.mapNotNull { f ->
+                                    val amt = (amountsMap[f.friendId] ?: "").toDoubleOrNull() ?: 0.0
+                                    if (amt > 0) {
+                                        TransactionPayload(f.friendId, amt, oweMap[f.friendId] ?: false, "")
+                                    } else null
+                                }
+                                if (payloads.isNotEmpty()) {
+                                    onSubmit(payloads)
+                                }
+                            }
+                        },
+                        enabled = selectedFriends.isNotEmpty() && totalAmount > 0,
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(64.dp),
@@ -254,14 +257,6 @@ fun AddTransactionScreen(
                         Spacer(Modifier.width(16.dp))
                         Icon(Icons.Filled.Send, null)
                     }
-                    Spacer(Modifier.height(12.dp))
-                    Text(
-                        "FUNDS WILL BE REQUESTED IMMEDIATELY",
-                        color = TextLow,
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 1.sp
-                    )
                 }
                 Spacer(Modifier.height(40.dp))
             }
@@ -308,8 +303,7 @@ fun SplitAmountCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp)
-            .height(88.dp)
-            .clickable { onToggleIOweThem() },
+            .height(88.dp),
         shape = RoundedCornerShape(12.dp),
         color = SoftBlack
     ) {
@@ -327,17 +321,27 @@ fun SplitAmountCard(
             }
             Spacer(Modifier.width(16.dp))
             
-            // Info
-            Column(modifier = Modifier.weight(1f)) {
+            // Info (Click to toggle owe direction)
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .clickable { onToggleIOweThem() }
+                    .padding(vertical = 8.dp) // Provide slightly larger tap area
+            ) {
                 Text(name, color = PureWhite, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                Text(if (iOweThem) "I OWE THEM (TAP TO CHANGE)" else "THEY OWE ME (TAP TO CHANGE)", color = MutedWhite, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                Text(
+                    if (iOweThem) "I OWE THEM (TAP)" else "THEY OWE ME (TAP)", 
+                    color = if (iOweThem) SalmonRed else MintGreen, 
+                    fontSize = 11.sp, 
+                    fontWeight = FontWeight.Bold
+                )
             }
             
             // Amount Input
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(modifier = Modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
                 Text("₹", color = MutedWhite, fontSize = 20.sp, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.width(8.dp))
-                BasicTextField(
+                OutlinedTextField(
                     value = amountText,
                     onValueChange = { if (it.all { c -> c.isDigit() || c == '.' }) onAmountChange(it) },
                     textStyle = TextStyle(
@@ -346,14 +350,17 @@ fun SplitAmountCard(
                         fontWeight = FontWeight.Black,
                         textAlign = TextAlign.End
                     ),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                    modifier = Modifier.width(100.dp),
-                    decorationBox = { inner ->
-                        Box(contentAlignment = Alignment.CenterEnd, modifier = Modifier.fillMaxWidth()) {
-                            if (amountText.isEmpty()) Text("0.00", color = TextLow, fontSize = 24.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.End)
-                            inner()
-                        }
-                    }
+                    placeholder = { 
+                        Text("0.00", color = TextLow, fontSize = 24.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.End) 
+                    },
+                    modifier = Modifier.width(150.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        focusedBorderColor = Color.Transparent,
+                        unfocusedBorderColor = Color.Transparent
+                    ),
+                    singleLine = true
                 )
             }
         }

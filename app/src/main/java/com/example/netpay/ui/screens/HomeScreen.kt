@@ -21,6 +21,11 @@ import com.example.netpay.data.model.FriendBalanceItem
 import com.example.netpay.ui.components.formatAmount
 import com.example.netpay.ui.theme.*
 
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
 @Composable
 fun HomeScreen(
     userName: String,
@@ -32,6 +37,8 @@ fun HomeScreen(
     onLogout: () -> Unit,
     onResetProfile: () -> Unit
 ) {
+    var searchQuery by remember { mutableStateOf("") }
+    
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -41,38 +48,6 @@ fun HomeScreen(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(bottom = 100.dp)
         ) {
-            // Custom Top Bar logic
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp, vertical = 20.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Box(
-                            modifier = Modifier
-                                .size(40.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(SoftBlack),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(Icons.Filled.Person, "Profile", tint = PureWhite, modifier = Modifier.size(24.dp))
-                        }
-                        Spacer(Modifier.width(16.dp))
-                        Text(
-                            "NetPay",
-                            color = PureWhite,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Black
-                        )
-                    }
-                    IconButton(onClick = { /* Search */ }) {
-                        Icon(Icons.Filled.Search, "Search", tint = MutedWhite)
-                    }
-                }
-            }
 
             // Ledger Overview Header
             item {
@@ -87,25 +62,25 @@ fun HomeScreen(
                 }
             }
 
-            // Decorative Search box
+            // Search box
             item {
-                Surface(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                        .height(56.dp),
+                OutlinedTextField(
+                    value = searchQuery,
+                    onValueChange = { searchQuery = it },
+                    placeholder = { Text("Search friends...", color = TextLow, fontSize = 16.sp) },
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp).height(56.dp),
                     shape = RoundedCornerShape(12.dp),
-                    color = Color.Black // Solid black for the search box as in ref
-                ) {
-                    Row(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(Icons.Filled.FilterList, null, tint = MutedWhite, modifier = Modifier.size(20.dp))
-                        Spacer(Modifier.width(16.dp))
-                        Text("Search transactions", color = TextLow, fontSize = 16.sp)
-                    }
-                }
+                    leadingIcon = { Icon(Icons.Filled.Search, null, tint = MutedWhite) },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.Black,
+                        unfocusedContainerColor = Color.Black,
+                        focusedBorderColor = MintGreen,
+                        unfocusedBorderColor = Color.Transparent,
+                        focusedTextColor = PureWhite,
+                        unfocusedTextColor = PureWhite
+                    ),
+                    singleLine = true
+                )
                 Spacer(Modifier.height(32.dp))
             }
 
@@ -114,14 +89,16 @@ fun HomeScreen(
                 SectionHeader("TODAY")
             }
 
-            if (friends.isEmpty()) {
+            val filteredFriends = friends.filter { it.friendName.contains(searchQuery, ignoreCase = true) }
+            
+            if (filteredFriends.isEmpty()) {
                 item {
                     Box(Modifier.fillMaxWidth().padding(48.dp), contentAlignment = Alignment.Center) {
-                        Text("No recent activity.", color = TextLow)
+                        Text(if (searchQuery.isEmpty()) "No recent activity." else "No friends found.", color = TextLow)
                     }
                 }
             } else {
-                items(friends) { friend ->
+                items(filteredFriends) { friend ->
                     ActivityItem(friend = friend, onClick = { onFriendClick(friend) })
                 }
             }
@@ -213,11 +190,6 @@ fun ActivityItem(friend: FriendBalanceItem, onClick: () -> Unit) {
                 color = if (friend.netBalance >= 0) MintGreen else SalmonRed,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Black
-            )
-            Text(
-                "11:24 AM",
-                color = TextLow,
-                fontSize = 11.sp
             )
         }
     }

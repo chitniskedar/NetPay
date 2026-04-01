@@ -56,11 +56,11 @@ fun FriendDetailScreen(
                             Icon(Icons.Filled.ArrowBack, null, tint = PureWhite)
                         }
                         Spacer(Modifier.width(8.dp))
-                        Text("NetPay", color = PureWhite, fontSize = 20.sp, fontWeight = FontWeight.Black)
+                        Text("Ledger", color = PureWhite, fontSize = 20.sp, fontWeight = FontWeight.Black)
                     }
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(onClick = { /* Search */ }) {
-                            Icon(Icons.Filled.Search, null, tint = MutedWhite)
+                        IconButton(onClick = onRemoveFriend) {
+                            Icon(Icons.Filled.Delete, null, tint = SalmonRed)
                         }
                         Spacer(Modifier.width(8.dp))
                         Box(
@@ -208,16 +208,7 @@ fun FriendDetailScreen(
                 }
             }
             
-            // Delete Friend option
-            item {
-                Spacer(Modifier.height(40.dp))
-                TextButton(
-                    onClick = onRemoveFriend,
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
-                ) {
-                    Text("Delete Friend from Ledger", color = SalmonRed, fontWeight = FontWeight.Bold)
-                }
-            }
+            // End of items list
         }
         
         // Add Transaction FAB
