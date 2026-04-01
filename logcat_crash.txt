@@ -1,0 +1,202 @@
+--------- beginning of main
+04-01 21:04:27.281  1002  1049 I thermal_core: pivot(AP) : 344, skin : 373
+04-01 21:04:27.283  1604  1604 I SAccessoryManager_SAccessoryManager: onReceive: com.samsung.server.BatteryService.action.SEC_BATTERY_EVENT, misc_event: 268500992, plug event: 1
+04-01 21:04:27.283  1604  1604 D SAccessoryManager_SAccessoryManager: batteryChanged: 1
+04-01 21:04:27.283  1604  1604 D SAccessoryManager_CoverAuthenticator: plugType = 1
+04-01 21:04:27.284  1604  1604 I SAccessoryManager_SAccessoryManager: File read fail java.io.FileNotFoundException: sys/class/power_supply/battery/wpc_auth_mode: open failed: ENOENT (No such file or directory)
+--------- beginning of system
+04-01 21:04:27.285  1604  1604 I BattAuthManager_WpcAuthenticator: onReceive: com.samsung.server.BatteryService.action.SEC_BATTERY_EVENT, misc_event: 268500992, plug event: 1
+04-01 21:04:27.287  1033  1105 I VSyncReactor: Current= 120, Period= 120, hwcPeriod= 120
+04-01 21:04:27.288  2095  2095 W View    : requestLayout() improperly called by com.android.systemui.qs.SecQSGradationDrawableView{7a45c0f V.E...... ......ID 0,0-1080,332 #7f0a0a16 app:id/qs_gradation_view} during layout: running second layout pass
+04-01 21:04:27.288  4726  6115 I SDHMS:x : SIOP:: AP:346 BAT:339 USB:0 CHG:372 PA:348 CP:346 BLK:0 SUBBAT:0 LRPTHM:333 SKIN:372 SKINF:354 SKINB:372 LRP2:372 LRF2:354 LRB2:372 AP2:372 CHG2:369 MEM2:371 WIFI2:371 RCV2:372 SPK2:351 UPSPK:339 DNSPK:339 VAP:362 AVGCUR:915 AVGSYS:0 POWER:3544
+04-01 21:04:27.288  2095  2095 W View    : requestLayout() improperly called by android.widget.FrameLayout{7a1f49c V.E...... ......I. 0,0-1080,2340 #3} during layout: running second layout pass
+04-01 21:04:27.288  2095  2095 W View    : requestLayout() improperly called by android.widget.FrameLayout{524dea5 V.E...... ......ID 0,143-1080,2205 #7f0a0a14 app:id/qs_frame} during layout: running second layout pass
+04-01 21:04:27.290  2095  2095 W RefactorFlag: New code path expects SceneContainerFlag to be enabled.
+04-01 21:04:27.295  2095  2095 D PowerUI : SUPPORT_WIRELESS_CHARGER_FOD_POPUP - oldWirelessFodState : false, mWirelessFodState : false
+04-01 21:04:27.295  2095  2095 D PowerUI : SUPPORT_WATER_PROTECTION_POPUP - oldBatteryWaterConnector : false, mBatteryWaterConnector : false, oldHiccupState : false, mIsHiccupState : false
+04-01 21:04:27.295  2095  2095 D PowerUI : USB damage detection - oldTemperatureHiccupState : false, mTemperatureHiccupState : false
+04-01 21:04:27.304  1033  1033 I BufferQueueProducer: [StatusBar$_2095#99](this:0xb4000078cc9414b8,id:-1,api:0,p:-1,c:1033) queueBuffer: fps=0.73 dur=1365.89 max=1365.89 min=1365.89
+04-01 21:04:27.305  1033  1033 D CompositionEngine: AodOverrideCEHelper 1 setEnabled
+04-01 21:04:27.306   978   978 I hwcomposer: [HWCDisplay] (0 updateFps():3942), (type:1, mode:2) fps:0.732365,dur:1365.44,max:1365.44,min:1365.44  
+04-01 21:04:27.380  1253  1253 I thermal_repeater: socket -1
+04-01 21:04:27.394 21774 22153 W RealtimeClientManager: Channel state: MqttChannelState{mConnectionState=DISCONNECTED, mDisconnectionReason=null, mLastConnectionMs=308095859, mLastDisconnectMs=308473247}
+04-01 21:04:27.597  1017  1039 E HeatmapThread: ECT Thread time in milliseconds: 1775057667
+04-01 21:04:27.600  1017  1039 D HeatmapThread: !@ batteryplugType : 1
+04-01 21:04:27.600  1017  1039 D HeatmapThread: !@ batteryLevel : 30  batteryTemperature : 340 
+04-01 21:04:27.601  1017  1039 D HeatmapThread: !@ Heatmap currtime: 29584294
+04-01 21:04:27.601  1017  1039 D HeatmapThread: !@ Heatmap prevtime: 29584273
+04-01 21:04:27.601  1017  1039 D HeatmapThread: !@ Heatmap plugstarttime: 29584286
+04-01 21:04:27.602  1017  1039 D HeatmapThread: !@ Heatmap prevv_dsoh_update_time: 29583334
+04-01 21:04:27.602  1017  1039 E HeatmapThread: !@ CAM New BSOH: 100
+04-01 21:04:27.850  1139  1711 E WiFiFWLogger: port index:0 not opened
+04-01 21:04:27.850  1139  1711 E WiFiFWLogger: port index:1 not opened
+04-01 21:04:28.010  2073  3095 D SatelliteController: isInCarrierRoamingNbIotNtn: satellite is disabled
+04-01 21:04:28.014  2745  2745 I EPDG -- SIM0 [SMARTCELLULAR]: onSignalStrengthsChanged: SignalStrength:{mCdma=Invalid,mGsm=Invalid,mWcdma=Invalid,mTdscdma=Invalid,mLte=CellSignalStrengthLte: rssi=-99 rsrp=-98 rsrq=-11 rssnr=11 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=4 parametersUseForLevel=0,mNr=Invalid,SignalBarInfo{ lteLevel=4 },rat=14,primary=CellSignalStrengthLte}
+04-01 21:04:28.015  2745  3840 I EPDG -- SIM0 [SMARTCELLULAR]: lastLteRSRP is -98 currentLteRSRP is -98 lastLteRSRQ is -10 currentLteRSRQ is -11 lastLteSNR is 11 currentLteSNR is 11
+04-01 21:04:28.329  2073  3095 D SatelliteController: isInCarrierRoamingNbIotNtn: satellite is disabled
+04-01 21:04:28.332  2745  2745 I EPDG -- SIM1 [SMARTCELLULAR]: onSignalStrengthsChanged: SignalStrength:{mCdma=Invalid,mGsm=Invalid,mWcdma=Invalid,mTdscdma=Invalid,mLte=CellSignalStrengthLte: rssi=-103 rsrp=-103 rsrq=-10 rssnr=5 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=Invalid,SignalBarInfo{ lteLevel=3 },rat=14,primary=CellSignalStrengthLte}
+04-01 21:04:28.333  2745  3810 I EPDG -- SIM1 [SMARTCELLULAR]: lastLteRSRP is -103 currentLteRSRP is -103 lastLteRSRQ is -10 currentLteRSRQ is -10 lastLteSNR is 6 currentLteSNR is 5
+04-01 21:04:28.486 21774 22135 E msys    : E[N mns:DGWClient]_OnDiskCacheGetData(1102)=>Start post callback cache refresh DNS resolution
+04-01 21:04:28.491  1604  2044 D NetdEventListenerService: DNS Requested by 256, 10390(com.instagram.android), 4(FAIL), isBlocked=true, 0ms
+04-01 21:04:28.501 21774 22135 E msys    : E[N mns:DGWClient]_LogError(285)=>Failed to resolve using system DNS resolver, getaddrinfo(): No address associated with hostname
+04-01 21:04:28.501 21774 22135 E msys    : E[N mns:DGWClient]_OnDiskCacheGetData(1102)=>Start post callback cache refresh DNS resolution
+04-01 21:04:28.504 21774 22135 E msys    : E[N mns:DGWClient]_LogError(285)=>Failed to resolve using system DNS resolver, getaddrinfo(): No address associated with hostname
+04-01 21:04:28.504  1604  2044 D NetdEventListenerService: DNS Requested by 256, 10390(com.instagram.android), 4(FAIL), isBlocked=true, 0ms
+04-01 21:04:28.595  1017  1039 E HeatmapThread: ECT Thread time in milliseconds: 1775057668
+04-01 21:04:28.595   556   556 D io_stats: !@   8,32 r 34130589 674351404 w 7027383 137630960 d 1185977 270204824 f 69533 363058 iot 5563280 0 th 0 0 0 pt 0 inp 0 0 196026.481
+04-01 21:04:28.596   556   556 D io_stats: !@ Read_top(KB): .gms.persistent:high(18168) 12
+04-01 21:04:28.596   556   556 D io_stats: !@ Write_top(KB): kworker/u16:4:/(29190) 80 .gms.persistent:high(18168) 12 vendor.samsung.:normal(997) 8
+04-01 21:04:28.598  1017  1039 D HeatmapThread: !@ batteryplugType : 1
+04-01 21:04:28.598  1017  1039 D HeatmapThread: !@ batteryLevel : 30  batteryTemperature : 340 
+04-01 21:04:28.598  1017  1039 D HeatmapThread: !@ Heatmap currtime: 29584294
+04-01 21:04:28.598  1017  1039 D HeatmapThread: !@ Heatmap prevtime: 29584273
+04-01 21:04:28.598  1017  1039 D HeatmapThread: !@ Heatmap plugstarttime: 29584286
+04-01 21:04:28.598  1017  1039 D HeatmapThread: !@ Heatmap prevv_dsoh_update_time: 29583334
+04-01 21:04:28.599  1017  1039 E HeatmapThread: !@ CAM New BSOH: 100
+04-01 21:04:28.878  1139  1711 E WiFiFWLogger: port index:0 not opened
+04-01 21:04:28.879  1139  1711 E WiFiFWLogger: port index:1 not opened
+04-01 21:04:28.912  2052  2052 D WifiHAL : WifiRequest::create vendor command to iface 53, vendor_id=0x1a11, subcmd=0x1200, buffer_size=0, res=0
+04-01 21:04:28.927  2052  2052 I WifiHAL : LLS RSP: data=0xb4000072321ca050, len=3540
+04-01 21:04:28.927  2052  2052 I WifiHAL : LLS check_data_sanity: 1872: current_radio_stat->num_channels=38
+04-01 21:04:28.927  2052  2052 I WifiHAL : LLS check_data_sanity: 1872: current_radio_stat->num_channels=8
+04-01 21:04:28.928  2052  2052 I WifiHAL : LLS check_data_sanity: confirmed_size=3540, len=3540
+04-01 21:04:28.930  1604  1898 E WifiStaIfaceAidlImpl: getCachedScanData failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+04-01 21:04:28.950  1604  3879 D SemWifiUsabilityStatsMonitor: onWifiUsabilityStats - seqNum 15110, isSameBssidAndFreq true
+04-01 21:04:28.957   978  1396 I hwcomposer: [DRMDEV] (0:114) failed to waitNextVsync: -1  
+04-01 21:04:28.960   978  1396 I hwcomposer: [DRMDEV] (0:114) failed to waitNextVsync: -1  
+04-01 21:04:28.962  1033  1402 D libcomposer_ext: ClientImplAidl::kickIdle()
+04-01 21:04:28.962   978   978 D libcomposer_ext: DeviceImplAidl::syncPerform(17), client_handle: 0
+04-01 21:04:28.962   978   978 D libcomposer_ext: DeviceImplAidl::DeviceClientContextAidl::ParseKickIdle()
+04-01 21:04:28.964   978  1396 I hwcomposer: [DRMDEV] (0:114) failed to waitNextVsync: -1  
+04-01 21:04:28.970  1033  1105 I VSyncReactor: Current= 120, Period= 120, hwcPeriod= 120
+04-01 21:04:28.978  1033  1033 I BufferQueueProducer: [StatusBar$_2095#99](this:0xb4000078cc9414b8,id:-1,api:0,p:-1,c:1033) queueBuffer: fps=0.60 dur=1674.23 max=1674.23 min=1674.23
+04-01 21:04:28.979  1033  1033 D CompositionEngine: AodOverrideCEHelper 1 setEnabled
+04-01 21:04:28.980   978   978 I hwcomposer: [HWCDisplay] (0 updateFps():3942), (type:1, mode:2) fps:0.597199,dur:1674.48,max:1674.48,min:1674.48  
+04-01 21:04:29.529  2429  3030 I bt_btif_dm: system/btif/src/btif_dm.cc:821 btif_update_remote_properties: CoD from storage was zero
+04-01 21:04:29.530  2429  3030 I bt_btif_dm: system/btif/src/btif_dm.cc:826 btif_update_remote_properties: xx:xx:xx:xx:1b:77 CoD: 0x000000 -> 0x001f00
+04-01 21:04:29.532  2429  3030 I ScanController: onScanResult to scannerId: 10- eventType=0x1b, addressType=1, address=XX:XX:XX:XX:1B:77, primaryPhy=1, secondaryPhy=0, advertisingSid=0xff, txPower=127, rssi=-97, periodicAdvInt=0x0
+04-01 21:04:29.536  2429  3030 I AdapterProperties: getBondedDevices: length=4
+04-01 21:04:29.547  2429  3030 E BluetoothRemoteDevices: Remote class is UNCATEGORIZED
+04-01 21:04:29.554  1604  1643 D ActivityManager: sync unfroze 22469 com.samsung.android.dqagent for 10
+04-01 21:04:29.556  1604  1643 D ActivityManager: sync unfroze 23470 com.samsung.android.stickercenter for 10
+04-01 21:04:29.557  1604  1643 D ActivityManager: sync unfroze 22203 com.samsung.android.provider.filterprovider for 10
+04-01 21:04:29.560  1604  1968 D BackgroundInstallControlService: Package event received: 0
+04-01 21:04:29.563  1604  1968 D BackgroundInstallControlService: Package event received: 0
+04-01 21:04:29.564 14562 14562 V BluetoothEventManager: onReceive :: android.bluetooth.device.action.NAME_CHANGED
+04-01 21:04:29.595  1017  1039 E HeatmapThread: ECT Thread time in milliseconds: 1775057669
+04-01 21:04:29.598  1017  1039 D HeatmapThread: !@ batteryplugType : 1
+04-01 21:04:29.598  1017  1039 D HeatmapThread: !@ batteryLevel : 30  batteryTemperature : 340 
+04-01 21:04:29.598  1017  1039 D HeatmapThread: !@ Heatmap currtime: 29584294
+04-01 21:04:29.598  1017  1039 D HeatmapThread: !@ Heatmap prevtime: 29584273
+04-01 21:04:29.598  1017  1039 D HeatmapThread: !@ Heatmap plugstarttime: 29584286
+04-01 21:04:29.598  1017  1039 D HeatmapThread: !@ Heatmap prevv_dsoh_update_time: 29583334
+04-01 21:04:29.598  1017  1039 E HeatmapThread: !@ CAM New BSOH: 100
+04-01 21:04:29.603  2073  3095 D SatelliteController: isInCarrierRoamingNbIotNtn: satellite is disabled
+04-01 21:04:29.608  2745  2745 I EPDG -- SIM1 [SMARTCELLULAR]: onSignalStrengthsChanged: SignalStrength:{mCdma=Invalid,mGsm=Invalid,mWcdma=Invalid,mTdscdma=Invalid,mLte=CellSignalStrengthLte: rssi=-103 rsrp=-102 rsrq=-10 rssnr=5 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=Invalid,SignalBarInfo{ lteLevel=3 },rat=14,primary=CellSignalStrengthLte}
+04-01 21:04:29.609  2745  3810 I EPDG -- SIM1 [SMARTCELLULAR]: lastLteRSRP is -103 currentLteRSRP is -102 lastLteRSRQ is -10 currentLteRSRQ is -10 lastLteSNR is 5 currentLteSNR is 5
+04-01 21:04:29.614 18168 17860 I NearbyDiscovery: (REDACTED) [trigger-id=Scan38B2B579] FastPairCache: First time advertise data with bloom filter, %s, %s, %s
+04-01 21:04:29.622 18168 17860 I NearbyDiscovery: (REDACTED) BloomFilterAdvManager: Detected bloom filter but too far away, ignoring. %sm, %s
+04-01 21:04:29.623 18168 24734 I NearbyDiscovery: (REDACTED) loadFastPairModule: checkFeaturesAreAvailable:%d
+04-01 21:04:29.623 18168 24734 I NearbyDiscovery: loadFastPairModule: FastPair module is downloaded. [CONTEXT service_id=265 ]
+04-01 21:04:29.625 18168 17860 I NearbyDiscovery: (REDACTED) %s
+04-01 21:04:29.625 18168 17860 I NearbyDiscovery: (REDACTED) %s
+04-01 21:04:29.626 18168 17860 I NearbyDiscovery: (REDACTED) %s
+04-01 21:04:29.727  1056 18896 D AALLightSensor: oldLux=26 [SA:-1 LA:-1] newLux=26 (oriLux: 27)
+04-01 21:04:29.732  1604  1619 I system_server: Background young concurrent mark compact GC freed 50MB AllocSpace bytes, 37(820KB) LOS objects, 24% free, 132MB/174MB, paused 1.482ms,8.399ms total 128.112ms
+04-01 21:04:29.901  1139  1711 E WiFiFWLogger: port index:0 not opened
+04-01 21:04:29.901  1139  1711 E WiFiFWLogger: port index:1 not opened
+04-01 21:04:30.183 21774 22135 E msys    : E[N mns:DGWClient]_OnDiskCacheGetData(1102)=>Start post callback cache refresh DNS resolution
+04-01 21:04:30.188  1604  2044 D NetdEventListenerService: DNS Requested by 256, 10390(com.instagram.android), 4(FAIL), isBlocked=true, 0ms
+04-01 21:04:30.194 21774 22135 E msys    : E[N mns:DGWClient]_LogError(285)=>Failed to resolve using system DNS resolver, getaddrinfo(): No address associated with hostname
+04-01 21:04:30.375 21774 22135 E msys    : E[N mns:DGWClient]_OnDiskCacheGetData(1102)=>Start post callback cache refresh DNS resolution
+04-01 21:04:30.379  1604  2044 D NetdEventListenerService: DNS Requested by 256, 10390(com.instagram.android), 4(FAIL), isBlocked=true, 0ms
+04-01 21:04:30.385 21774 22135 E msys    : E[N mns:DGWClient]_LogError(285)=>Failed to resolve using system DNS resolver, getaddrinfo(): No address associated with hostname
+04-01 21:04:30.570  2073  3095 D SatelliteController: isInCarrierRoamingNbIotNtn: satellite is disabled
+04-01 21:04:30.574  2745  2745 I EPDG -- SIM0 [SMARTCELLULAR]: onSignalStrengthsChanged: SignalStrength:{mCdma=Invalid,mGsm=Invalid,mWcdma=Invalid,mTdscdma=Invalid,mLte=CellSignalStrengthLte: rssi=-99 rsrp=-99 rsrq=-11 rssnr=11 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=Invalid,SignalBarInfo{ lteLevel=4 },rat=14,primary=CellSignalStrengthLte}
+04-01 21:04:30.574  2745  3840 I EPDG -- SIM0 [SMARTCELLULAR]: lastLteRSRP is -98 currentLteRSRP is -99 lastLteRSRQ is -11 currentLteRSRQ is -11 lastLteSNR is 11 currentLteSNR is 11
+04-01 21:04:30.595  1017  1039 E HeatmapThread: ECT Thread time in milliseconds: 1775057670
+04-01 21:04:30.597   556   556 D io_stats: !@   8,32 r 34131081 674358316 w 7027392 137631016 d 1185977 270204824 f 69533 363058 iot 5563336 0 th 0 0 0 pt 0 inp 0 0 196028.483
+04-01 21:04:30.598  1017  1039 D HeatmapThread: !@ batteryplugType : 1
+04-01 21:04:30.598  1017  1039 D HeatmapThread: !@ batteryLevel : 30  batteryTemperature : 340 
+04-01 21:04:30.598  1017  1039 D HeatmapThread: !@ Heatmap currtime: 29584294
+04-01 21:04:30.598  1017  1039 D HeatmapThread: !@ Heatmap prevtime: 29584273
+04-01 21:04:30.598  1017  1039 D HeatmapThread: !@ Heatmap plugstarttime: 29584286
+04-01 21:04:30.599  1017  1039 D HeatmapThread: !@ Heatmap prevv_dsoh_update_time: 29583334
+04-01 21:04:30.599  1017  1039 E HeatmapThread: !@ CAM New BSOH: 100
+04-01 21:04:30.626 21774 22135 E msys    : E[N mns:DGWClient]_OnDiskCacheGetData(1102)=>Start post callback cache refresh DNS resolution
+04-01 21:04:30.631  1604  2044 D NetdEventListenerService: DNS Requested by 256, 10390(com.instagram.android), 4(FAIL), isBlocked=true, 0ms
+04-01 21:04:30.642 21774 22135 E msys    : E[N mns:DGWClient]_LogError(285)=>Failed to resolve using system DNS resolver, getaddrinfo(): No address associated with hostname
+04-01 21:04:30.915  1139  1711 E WiFiFWLogger: port index:0 not opened
+04-01 21:04:30.915  1139  1711 E WiFiFWLogger: port index:1 not opened
+04-01 21:04:31.592  3304  3304 I ContentFeedManager: initSyncRunnable called
+04-01 21:04:31.593  3304  3304 I WearableDeviceFactory: getConnectedDeviceIdByType()::deviceType = Gear, size = 0
+04-01 21:04:31.593  3304  3304 I ContentFeedManager: getmDeviceId: device id: null
+04-01 21:04:31.593  3304  3304 I WearableDeviceFactory: getConnectedDeviceIdByType()::deviceType = Gear, size = 0
+04-01 21:04:31.593  3304  3304 I ContentFeedManager: getmDeviceId: device id: null
+04-01 21:04:31.593  3304  3304 I ContentFeedManager: initSyncManagersAndSyncIfRequired: deviceid null
+04-01 21:04:31.593  3304  3304 I ContentFeedManager: initSyncRunnable initialized
+04-01 21:04:31.597  1017  1039 E HeatmapThread: ECT Thread time in milliseconds: 1775057671
+04-01 21:04:31.667  1017  1039 D HeatmapThread: !@ batteryplugType : 1
+04-01 21:04:31.667  1017  1039 D HeatmapThread: !@ batteryLevel : 30  batteryTemperature : 340 
+04-01 21:04:31.667  1017  1039 D HeatmapThread: !@ Heatmap currtime: 29584294
+04-01 21:04:31.667  1017  1039 D HeatmapThread: !@ Heatmap prevtime: 29584273
+04-01 21:04:31.667  1017  1039 D HeatmapThread: !@ Heatmap plugstarttime: 29584286
+04-01 21:04:31.667  1017  1039 D HeatmapThread: !@ Heatmap prevv_dsoh_update_time: 29583334
+04-01 21:04:31.668  1017  1039 E HeatmapThread: !@ CAM New BSOH: 100
+04-01 21:04:31.876 18168 24729 I NearbyMediums: No BLE Fast/GATT advertisements found in the latest cycle.
+04-01 21:04:31.876 18168 24729 I NearbyMediums: Current Tracked Scanning Clients are : {NearbyConnections.EnvironmentMonitor, NearbySharing}
+04-01 21:04:31.929  1056 18896 D AALService: [CRTC_114] onALIChanged: 26 -> 9
+04-01 21:04:31.944  1139  1711 E WiFiFWLogger: port index:0 not opened
+04-01 21:04:31.944  1139  1711 E WiFiFWLogger: port index:1 not opened
+04-01 21:04:31.955  2052  2052 D WifiHAL : WifiRequest::create vendor command to iface 53, vendor_id=0x1a11, subcmd=0x1200, buffer_size=0, res=0
+04-01 21:04:31.961  2052  2052 I WifiHAL : LLS RSP: data=0xb4000072321ca050, len=3540
+04-01 21:04:31.962  2052  2052 I WifiHAL : LLS check_data_sanity: 1872: current_radio_stat->num_channels=38
+04-01 21:04:31.962  2052  2052 I WifiHAL : LLS check_data_sanity: 1872: current_radio_stat->num_channels=8
+04-01 21:04:31.962  2052  2052 I WifiHAL : LLS check_data_sanity: confirmed_size=3540, len=3540
+04-01 21:04:31.964  1604  1898 E WifiStaIfaceAidlImpl: getCachedScanData failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+04-01 21:04:31.972  1604  2019 D WifiConnectivityMonitor.NetworkStatsAnalyzer: Backhaul result - RSSI:-54, CE:11, PE:11, TI:19, PTI:20, TW:0, PTW:0, Tx:22, Rx:7, TxS:4, RxS:3, RESULT:true, IC:1, ICT:5, WC:2, WCT:5, R:0, RC:0, IE:0, EC:0
+04-01 21:04:31.981  1604  3879 D SemWifiUsabilityStatsMonitor: onWifiUsabilityStats - seqNum 15111, isSameBssidAndFreq true
+04-01 21:04:31.985  1604  1991 I SemWifiLinkQualityMonitor: Link stat: 0 / 0 / 1.00 (1) / 702 / -52.0 || 100.0 : 702.00 / 0.5 : 1.00 / 0.55 : 0.30 / G (G) || 766bb9a55220: 0.114 / 70.020 / D || N N / 0 0 / Y 2.0 / Y X 0 / 196029868 0 || Invalid
+04-01 21:04:31.989   978  1396 I hwcomposer: [DRMDEV] (0:114) failed to waitNextVsync: -1  
+04-01 21:04:31.992   978  1396 I hwcomposer: [DRMDEV] (0:114) failed to waitNextVsync: -1  
+04-01 21:04:31.994  1033  1402 D libcomposer_ext: ClientImplAidl::kickIdle()
+04-01 21:04:31.995   978   978 D libcomposer_ext: DeviceImplAidl::syncPerform(17), client_handle: 0
+04-01 21:04:31.995   978   978 D libcomposer_ext: DeviceImplAidl::DeviceClientContextAidl::ParseKickIdle()
+04-01 21:04:31.995   978  1396 I hwcomposer: [DRMDEV] (0:114) failed to waitNextVsync: -1  
+04-01 21:04:32.002  1033  1105 I VSyncReactor: Current= 120, Period= 120, hwcPeriod= 120
+04-01 21:04:32.011  1033  1033 I BufferQueueProducer: [StatusBar$_2095#99](this:0xb4000078cc9414b8,id:-1,api:0,p:-1,c:1033) queueBuffer: fps=0.33 dur=3032.91 max=3032.91 min=3032.91
+04-01 21:04:32.012  1033  1033 D CompositionEngine: AodOverrideCEHelper 1 setEnabled
+04-01 21:04:32.013   978   978 I hwcomposer: [HWCDisplay] (0 updateFps():3942), (type:1, mode:2) fps:0.329706,dur:3033.01,max:3033.01,min:3033.01  
+04-01 21:04:32.166  2073  3095 D SatelliteController: isInCarrierRoamingNbIotNtn: satellite is disabled
+04-01 21:04:32.171  2745  2745 I EPDG -- SIM1 [SMARTCELLULAR]: onSignalStrengthsChanged: SignalStrength:{mCdma=Invalid,mGsm=Invalid,mWcdma=Invalid,mTdscdma=Invalid,mLte=CellSignalStrengthLte: rssi=-103 rsrp=-102 rsrq=-9 rssnr=5 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=Invalid,SignalBarInfo{ lteLevel=3 },rat=14,primary=CellSignalStrengthLte}
+04-01 21:04:32.173  2745  3810 I EPDG -- SIM1 [SMARTCELLULAR]: lastLteRSRP is -102 currentLteRSRP is -102 lastLteRSRQ is -10 currentLteRSRQ is -9 lastLteSNR is 5 currentLteSNR is 5
+04-01 21:04:32.368  1056 18896 D AALService: [CRTC_114] onALIChanged: 9 -> 26
+04-01 21:04:32.381  1253  1253 I thermal_repeater: socket -1
+04-01 21:04:32.596  1017  1039 E HeatmapThread: ECT Thread time in milliseconds: 1775057672
+04-01 21:04:32.599   556   556 D io_stats: !@   8,32 r 34131083 674358424 w 7027401 137631096 d 1185977 270204824 f 69533 363058 iot 5563340 0 th 0 0 0 pt 0 inp 0 0 196030.484
+04-01 21:04:32.599   556   556 D io_stats: !@ Read_top(KB): .gms.persistent:high(18168) 5420 kworker/u16:7:/(15414) 740 ndroid.settings:low(14562) 556
+04-01 21:04:32.599   556   556 D io_stats: !@ Write_top(KB): kworker/u16:7:/(15414) 80 sait.sohservice:low(15513) 44 .gms.persistent:high(18168) 8
+04-01 21:04:32.600  1017  1039 D HeatmapThread: !@ batteryplugType : 1
+04-01 21:04:32.600  1017  1039 D HeatmapThread: !@ batteryLevel : 30  batteryTemperature : 340 
+04-01 21:04:32.600  1017  1039 D HeatmapThread: !@ Heatmap currtime: 29584294
+04-01 21:04:32.600  1017  1039 D HeatmapThread: !@ Heatmap prevtime: 29584273
+04-01 21:04:32.600  1017  1039 D HeatmapThread: !@ Heatmap plugstarttime: 29584286
+04-01 21:04:32.600  1017  1039 D HeatmapThread: !@ Heatmap prevv_dsoh_update_time: 29583334
+04-01 21:04:32.600  1017  1039 E HeatmapThread: !@ CAM New BSOH: 100
+04-01 21:04:32.648  1056 18896 D AALService: [CRTC_114] onALIChanged: 26 -> 19
+04-01 21:04:32.928  1056 18896 D AALService: [CRTC_114] onALIChanged: 19 -> 16
+04-01 21:04:32.973  1139  1711 E WiFiFWLogger: port index:0 not opened
+04-01 21:04:32.973  1139  1711 E WiFiFWLogger: port index:1 not opened
+04-01 21:04:33.014 14789 14839 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=f6ea179b-0ba1-4392-9a25-de383546d25a, tags={ com.whatsapp.xmpp.messaging.XmppLifecycleWorker } ]
+04-01 21:04:33.017 14789 14789 D WM-Processor: 1Ml f6ea179b-0ba1-4392-9a25-de383546d25a executed; reschedule = false
+04-01 21:04:33.017 14789 14789 D WM-GreedyScheduler: Stopping tracking for WorkGenerationalId(workSpecId=f6ea179b-0ba1-4392-9a25-de383546d25a, generation=0)
+04-01 21:04:33.017 14789 14789 D WM-SystemJobService: f6ea179b-0ba1-4392-9a25-de383546d25a executed on JobScheduler
+04-01 21:04:33.022  1604  2315 I ActivityManager: Changes in 10334 8 to 10, 136 to 0
+04-01 21:04:33.025 14789 14839 D WM-GreedyScheduler: Cancelling work ID f6ea179b-0ba1-4392-9a25-de383546d25a
+04-01 21:04:33.033 14789 14839 D WM-GreedyScheduler: Starting tracking for bf1d60f3-943f-4c00-95b6-acd5ab218649
+04-01 21:04:33.121  2073  3095 D SatelliteController: isInCarrierRoamingNbIotNtn: satellite is disabled
+04-01 21:04:33.126  2745  2745 I EPDG -- SIM0 [SMARTCELLULAR]: onSignalStrengthsChanged: SignalStrength:{mCdma=Invalid,mGsm=Invalid,mWcdma=Invalid,mTdscdma=Invalid,mLte=CellSignalStrengthLte: rssi=-101 rsrp=-100 rsrq=-10 rssnr=10 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=Invalid,SignalBarInfo{ lteLevel=4 },rat=14,primary=CellSignalStrengthLte}
+04-01 21:04:33.126  2745  3840 I EPDG -- SIM0 [SMARTCELLULAR]: lastLteRSRP is -99 currentLteRSRP is -100 lastLteRSRQ is -11 currentLteRSRQ is -10 lastLteSNR is 11 currentLteSNR is 10
+04-01 21:04:33.155  1002  1002 I seh_thermal_service: getTemperaturesWithType SehTemperatureType: 3
+04-01 21:04:33.155   997   997 I sehhealth-service: updateLrpSysfs: write: 372
+04-01 21:04:33.159   997  1021 E BatteryDump: !@new_battery_dump : 3873,863,1000,2400,30,340,340,372,0,0,372,372,0,Charging,NO_CHARGING,Normal,Good,PDIC,0,Normal,0,0,9840,0x4,0x10010000,0x0,0,0,0,v0002,0000,0000,00000000,0,0,0,0,680,3873000,300,0,0,

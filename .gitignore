@@ -49,3 +49,6 @@ credentials.json
 ehthumbs.db
 Thumbs.db
 desktop.ini
+
+.idea/
+.vscode/
