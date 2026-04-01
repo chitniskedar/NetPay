@@ -1,4 +1,4 @@
-package com.example.netpay.data.models
+package com.example.netpay.data.model
 
 data class Transaction(
     val transactionId: String = "",
