@@ -16,7 +16,11 @@ A simple and intuitive **person-to-person expense tracking app** that helps you 
 
 
 ---
+## 📦 APK
 
+Interested in trying NetPay?  
+📩 Reach out or open an issue to request the APK — happy to share!
+---
 ## 📸 Screenshots
 
 <p align="center">
