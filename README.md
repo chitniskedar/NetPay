@@ -19,13 +19,17 @@ A simple and intuitive **person-to-person expense tracking app** that helps you 
 
 ## 📸 Screenshots
 
-<img width="709" height="1536" alt="image" src="https://github.com/user-attachments/assets/6b492452-8f95-4336-b46e-771fba95144c" /> 
-<img width="709" height="1536" alt="image" src="https://github.com/user-attachments/assets/3e8bc760-5943-450c-9475-c57ff8d8d2b8" />
-<img width="709" height="1536" alt="image" src="https://github.com/user-attachments/assets/c653b1c1-81ca-430e-9cc5-30824b2ece58" />
-<img width="709" height="1536" alt="image" src="https://github.com/user-attachments/assets/050fcc0c-5a90-4e84-9d63-972bb2391367" />
-<img width="709" height="1536" alt="image" src="https://github.com/user-attachments/assets/4936dc4a-45dc-4c1f-9c22-291a3f861f68" />
-<img width="709" height="1536" alt="image" src="https://github.com/user-attachments/assets/27a726c8-5dff-40ee-aeb1-72efc89255b7" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6b492452-8f95-4336-b46e-771fba95144c" width="250"/>
+  <img src="https://github.com/user-attachments/assets/3e8bc760-5943-450c-9475-c57ff8d8d2b8" width="250"/>
+  <img src="https://github.com/user-attachments/assets/c653b1c1-81ca-430e-9cc5-30824b2ece58" width="250"/>
+</p>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/050fcc0c-5a90-4e84-9d63-972bb2391367" width="250"/>
+  <img src="https://github.com/user-attachments/assets/4936dc4a-45dc-4c1f-9c22-291a3f861f68" width="250"/>
+  <img src="https://github.com/user-attachments/assets/27a726c8-5dff-40ee-aeb1-72efc89255b7" width="250"/>
+</p>
 ---
 
 
