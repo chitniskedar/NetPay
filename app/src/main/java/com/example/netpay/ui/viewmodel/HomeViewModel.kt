@@ -9,6 +9,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+data class NewTransactionRequest(
+    val friendId: String,
+    val amount: Double,
+    val iOweThem: Boolean,
+    val note: String = ""
+)
+
 class HomeViewModel : ViewModel() {
     private val repository = FirebaseRepository()
 
@@ -23,6 +30,9 @@ class HomeViewModel : ViewModel() {
 
     private val _isSearching = MutableStateFlow(false)
     val isSearching: StateFlow<Boolean> = _isSearching
+
+    private val _isSavingTransaction = MutableStateFlow(false)
+    val isSavingTransaction: StateFlow<Boolean> = _isSavingTransaction
 
     init {
         loadBalances()
@@ -114,6 +124,35 @@ class HomeViewModel : ViewModel() {
     fun addTransaction(friendId: String, amount: Double, iOweThem: Boolean, note: String = "") {
         viewModelScope.launch {
             repository.addTransaction(friendId, amount, iOweThem, note)
+        }
+    }
+
+    fun addTransactions(
+        requests: List<NewTransactionRequest>,
+        onResult: (Boolean, String?) -> Unit
+    ) {
+        if (requests.isEmpty()) {
+            onResult(false, "Add at least one valid transaction")
+            return
+        }
+
+        viewModelScope.launch {
+            _isSavingTransaction.value = true
+            try {
+                requests.forEach { request ->
+                    repository.addTransaction(
+                        targetUserId = request.friendId,
+                        amount = request.amount,
+                        iOweThem = request.iOweThem,
+                        note = request.note
+                    )
+                }
+                onResult(true, "Transaction added")
+            } catch (e: Exception) {
+                onResult(false, e.message ?: "Failed to add transaction")
+            } finally {
+                _isSavingTransaction.value = false
+            }
         }
     }
 

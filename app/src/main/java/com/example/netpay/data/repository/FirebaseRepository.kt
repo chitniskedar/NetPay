@@ -70,11 +70,12 @@ class FirebaseRepository {
         val (user1, user2) = Balance.getOrderedIds(uid, targetUserId)
         val pairId = Balance.generatePairId(uid, targetUserId)
         
-        // Calculate balance delta from user1's perspective
+        // Calculate balance delta from user1's perspective.
+        // Positive means user1 should receive money; negative means user1 owes money.
         val delta = if (uid == user1) {
-            if (iOweThem) amount else -amount
-        } else {
             if (iOweThem) -amount else amount
+        } else {
+            if (iOweThem) amount else -amount
         }
 
         val balanceRef = db.collection("balances").document(pairId)

@@ -27,11 +27,14 @@ import androidx.compose.ui.unit.sp
 import com.example.netpay.data.model.FriendBalanceItem
 import com.example.netpay.ui.theme.*
 
+private const val MAX_AMOUNT_DIGITS = 5
+
 data class TransactionPayload(val friendId: String, val amount: Double, val iOweThem: Boolean, val note: String)
 
 @Composable
 fun AddTransactionScreen(
     friends: List<FriendBalanceItem>,
+    isSubmitting: Boolean = false,
     onBack: () -> Unit,
     onSubmit: (List<TransactionPayload>) -> Unit
 ) {
@@ -242,7 +245,7 @@ fun AddTransactionScreen(
                                 }
                             }
                         },
-                        enabled = selectedFriends.isNotEmpty() && totalAmount > 0,
+                        enabled = !isSubmitting && selectedFriends.isNotEmpty() && totalAmount > 0,
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(64.dp),
@@ -253,9 +256,19 @@ fun AddTransactionScreen(
                             disabledContainerColor = DarkGray
                         )
                     ) {
-                        Text("CONFIRM TRANSACTION", fontWeight = FontWeight.Black, fontSize = 18.sp)
-                        Spacer(Modifier.width(16.dp))
-                        Icon(Icons.Filled.Send, null)
+                        if (isSubmitting) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(20.dp),
+                                strokeWidth = 2.dp,
+                                color = DeepBlack
+                            )
+                            Spacer(Modifier.width(12.dp))
+                            Text("SAVING...", fontWeight = FontWeight.Black, fontSize = 18.sp)
+                        } else {
+                            Text("CONFIRM TRANSACTION", fontWeight = FontWeight.Black, fontSize = 18.sp)
+                            Spacer(Modifier.width(16.dp))
+                            Icon(Icons.Filled.Send, null)
+                        }
                     }
                 }
                 Spacer(Modifier.height(40.dp))
@@ -343,7 +356,11 @@ fun SplitAmountCard(
                 Spacer(Modifier.width(8.dp))
                 OutlinedTextField(
                     value = amountText,
-                    onValueChange = { if (it.all { c -> c.isDigit() || c == '.' }) onAmountChange(it) },
+                    onValueChange = { input ->
+                        if (isValidAmountInput(input)) {
+                            onAmountChange(input)
+                        }
+                    },
                     textStyle = TextStyle(
                         color = PureWhite,
                         fontSize = 24.sp,
@@ -365,4 +382,19 @@ fun SplitAmountCard(
             }
         }
     }
+}
+
+private fun isValidAmountInput(input: String): Boolean {
+    if (input.isEmpty()) return true
+    if (input.count { it == '.' } > 1) return false
+    if (input.any { !it.isDigit() && it != '.' }) return false
+
+    val parts = input.split('.', limit = 2)
+    val wholePart = parts[0]
+    val fractionalPart = parts.getOrNull(1).orEmpty()
+
+    if (wholePart.length > MAX_AMOUNT_DIGITS) return false
+    if (fractionalPart.length > 2) return false
+
+    return true
 }

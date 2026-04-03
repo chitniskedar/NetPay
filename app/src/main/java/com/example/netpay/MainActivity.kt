@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.netpay.ui.components.AddFriendDialog
 import com.example.netpay.ui.screens.*
+import com.example.netpay.ui.viewmodel.NewTransactionRequest
 import com.example.netpay.ui.theme.*
 import com.example.netpay.ui.viewmodel.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -67,6 +68,7 @@ fun NetPayApp() {
     NetpayTheme(darkTheme = true) {
         var showAddFriendDialog by remember { mutableStateOf(false) }
         val isSearching by homeViewModel.isSearching.collectAsState()
+        val isSavingTransaction by homeViewModel.isSavingTransaction.collectAsState()
 
         if (showAddFriendDialog) {
             AddFriendDialog(
@@ -213,12 +215,28 @@ fun NetPayApp() {
                             )
                             is Screen.Pay -> AddTransactionScreen(
                                 friends = friends,
+                                isSubmitting = isSavingTransaction,
                                 onBack = { currentScreen = Screen.Home },
                                 onSubmit = { payloads ->
-                                    payloads.forEach { p ->
-                                        homeViewModel.addTransaction(p.friendId, p.amount, p.iOweThem, p.note)
+                                    homeViewModel.addTransactions(
+                                        requests = payloads.map { p ->
+                                            NewTransactionRequest(
+                                                friendId = p.friendId,
+                                                amount = p.amount,
+                                                iOweThem = p.iOweThem,
+                                                note = p.note
+                                            )
+                                        }
+                                    ) { success, message ->
+                                        scope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                message ?: if (success) "Transaction added" else "Failed to add transaction"
+                                            )
+                                        }
+                                        if (success) {
+                                            currentScreen = Screen.Home
+                                        }
                                     }
-                                    currentScreen = Screen.Home
                                 }
                             )
                             is Screen.History -> HistoryPlaceholder()
