@@ -44,8 +44,6 @@ Interested in trying NetPay?
 
   * Cloud Firestore
   * Firebase Authentication
-* **Architecture:** MVVM (if used)
-
 ---
 
 ## 🔥 How It Works
